@@ -1,0 +1,42 @@
+# Godot-specific directories and files
+.import/
+export/
+
+# Godot temporary files
+*.tmp
+*.swap
+*.save
+*.cfg
+*.config
+
+# Godot script files backup
+*.bak
+
+# Godot Mono-specific (C#)
+.mono/
+*.csproj
+*.sln
+*.mono/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# User-specific configuration
+*.log
+.userprefs
+
+# Windows-specific
+*.exe
+*.pdb
+*.ilk
+*.idb
+*.obj
+*.log
+*.db
+
+# MacOS-specific
+.DS_Store
+
+# Linux-specific
+*~
