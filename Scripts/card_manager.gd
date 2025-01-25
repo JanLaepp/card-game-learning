@@ -8,10 +8,12 @@ const card_in_slot_z_index = 1
 var screen_size
 var card_being_dragged
 var highlighted_card
+var player_hand
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	screen_size = get_viewport_rect().size
+	player_hand = $"../PlayerHand"
 
 func _input(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
@@ -67,12 +69,14 @@ func finish_drag():
 		card_being_dragged.scale *= card_highlight_scale
 		var card_slot = raycast_check_for_card_slot()
 		if card_slot != null and not card_slot.card_in_slot:
-			#card dropped into card slot
+			#finished dragging over an unoccupied card slot
 			card_being_dragged.position = card_slot.position
 			card_being_dragged.get_node("Area2D/CollisionShape2D").disabled = true
 			card_slot.card_in_slot = true
 			card_being_dragged.z_index = card_in_slot_z_index
-			print(card_being_dragged.z_index)
+			player_hand.remove_card_from_hand(card_being_dragged)
+		else:
+			player_hand.snap_card_back_to_hand(card_being_dragged)
 		card_being_dragged = null
 				
 func connect_card_signal(card):
