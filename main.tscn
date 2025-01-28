@@ -1,11 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://dbweutcnip3gl"]
+[gd_scene load_steps=10 format=3 uid="uid://dbweutcnip3gl"]
 
 [ext_resource type="Script" path="res://Scripts/card_manager.gd" id="1_u66l1"]
 [ext_resource type="Script" path="res://Scripts/player_hand.gd" id="3_lcrsn"]
-[ext_resource type="PackedScene" uid="uid://dwt72r2oehfis" path="res://Scenes/card_slot.tscn" id="3_tjgnu"]
-[ext_resource type="Script" path="res://deck.gd" id="4_v3rjd"]
+[ext_resource type="Script" path="res://Scripts/magic_card_slot.gd" id="3_nn7aj"]
+[ext_resource type="PackedScene" uid="uid://dwt72r2oehfis" path="res://Scenes/player_card_slot.tscn" id="3_tjgnu"]
+[ext_resource type="Script" path="res://Scripts/deck.gd" id="4_v3rjd"]
 [ext_resource type="Texture2D" uid="uid://dgxjaunqf4kyv" path="res://Assets/Deck.png" id="5_hcsf0"]
 [ext_resource type="Script" path="res://Scripts/input_manager.gd" id="6_3j405"]
+[ext_resource type="PackedScene" uid="uid://djl3hwcjqcxos" path="res://Scenes/opponent_card_slot.tscn" id="8_68470"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oll8w"]
 size = Vector2(180, 264)
@@ -15,17 +17,89 @@ size = Vector2(180, 264)
 [node name="CardManager" type="Node2D" parent="."]
 script = ExtResource("1_u66l1")
 
-[node name="CardSlot" parent="." instance=ExtResource("3_tjgnu")]
-position = Vector2(767, 219)
+[node name="CardSlots" type="Node" parent="."]
+
+[node name="CardSlot" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(900, 750)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("3_nn7aj")
+
+[node name="CardSlot2" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(750, 750)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("3_nn7aj")
+
+[node name="CardSlot3" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(1050, 750)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("3_nn7aj")
+
+[node name="CardSlot4" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(600, 750)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("3_nn7aj")
+
+[node name="CardSlot5" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(1200, 750)
+scale = Vector2(0.6, 0.6)
+script = ExtResource("3_nn7aj")
+
+[node name="CardSlot6" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(900, 580)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot7" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(750, 580)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot8" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(1050, 580)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot9" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(600, 580)
+scale = Vector2(0.6, 0.6)
+
+[node name="CardSlot10" parent="CardSlots" instance=ExtResource("3_tjgnu")]
+position = Vector2(1200, 580)
+scale = Vector2(0.6, 0.6)
+
+[node name="OpponentCardSlot" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(600, 400)
+
+[node name="OpponentCardSlot2" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(600, 230)
+
+[node name="OpponentCardSlot3" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(750, 400)
+
+[node name="OpponentCardSlot4" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(750, 230)
+
+[node name="OpponentCardSlot5" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(1050, 400)
+
+[node name="OpponentCardSlot6" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(1050, 230)
+
+[node name="OpponentCardSlot7" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(1200, 400)
+
+[node name="OpponentCardSlot8" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(1200, 230)
+
+[node name="OpponentCardSlot9" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(900, 400)
+
+[node name="OpponentCardSlot10" parent="CardSlots" instance=ExtResource("8_68470")]
+position = Vector2(900, 230)
 
 [node name="PlayerHand" type="Node2D" parent="."]
 script = ExtResource("3_lcrsn")
 
-[node name="CardSlot2" parent="." instance=ExtResource("3_tjgnu")]
-position = Vector2(367, 283)
-
 [node name="PlayerDeck" type="Node2D" parent="."]
-position = Vector2(150, 890)
+position = Vector2(100, 950)
+scale = Vector2(0.68, 0.64)
 script = ExtResource("4_v3rjd")
 
 [node name="Area2D" type="Area2D" parent="PlayerDeck"]
@@ -46,3 +120,26 @@ text = "0"
 
 [node name="InputManager" type="Node2D" parent="."]
 script = ExtResource("6_3j405")
+
+[node name="EndTurnButton" type="Button" parent="."]
+offset_left = 1799.0
+offset_top = 754.0
+offset_right = 1877.0
+offset_bottom = 785.0
+text = "End Turn
+"
+
+[node name="OpponentDeck" type="Node2D" parent="."]
+position = Vector2(1820, 130)
+scale = Vector2(0.68, 0.64)
+
+[node name="Sprite2D" type="Sprite2D" parent="OpponentDeck"]
+texture = ExtResource("5_hcsf0")
+
+[node name="DeckCardCount" type="RichTextLabel" parent="OpponentDeck"]
+offset_left = -15.0
+offset_top = 135.0
+offset_right = 25.0
+offset_bottom = 175.0
+scale = Vector2(2, 2)
+text = "0"
