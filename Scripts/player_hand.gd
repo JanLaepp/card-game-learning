@@ -1,12 +1,15 @@
 extends Node2D
 
-const HAND_Y_POS = 890
+var player_deck
+var hand_y_pos
 
 var player_hand = []
 var center_screen_x
 var card_width
 func _ready() -> void:
 	center_screen_x = get_viewport().size.x / 2
+	player_deck = $"../PlayerDeck"
+	hand_y_pos = player_deck.position.y
 
 func add_card_to_hand(new_card) -> void:
 	player_hand.insert(0,new_card)
@@ -18,7 +21,7 @@ func snap_card_back_to_hand(card):
 	
 func update_hand_positions() -> void:
 	for i in range(player_hand.size()):
-		var new_position = Vector2(calculate_card_position(i), HAND_Y_POS)
+		var new_position = Vector2(calculate_card_position(i), hand_y_pos)
 		var card = player_hand[i]
 		card.position_in_hand = new_position
 		animate_card_to_position(card, new_position)
@@ -39,4 +42,4 @@ func remove_card_from_hand(card):
 		update_hand_positions()
 		
 func set_card_width():
-	card_width = max(250 - (player_hand.size() * 10),100)
+	card_width = max(200 - (player_hand.size() * 8),80)
