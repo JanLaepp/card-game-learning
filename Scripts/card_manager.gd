@@ -14,15 +14,12 @@ var player_hand
 func _ready():
 	screen_size = get_viewport_rect().size
 	player_hand = $"../PlayerHand"
+	$"../InputManager".connect("left_mouse_button_released", on_left_mouse_button_released)
 
-func _input(event):
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-			var card_to_drag = raycast_check_for_card()
-			if card_to_drag:
-				start_drag(card_to_drag)
-		else:
-			finish_drag()
+
+func on_left_mouse_button_released():
+	if card_being_dragged:
+		finish_drag()
 			
 func raycast_check_for_card():
 	var card_array = raycast_check_for_objects("card")
